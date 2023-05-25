@@ -1,0 +1,730 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title> Attendance Calculator </title>
+	<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+	<style>
+        .calculator{
+            background: #fff;
+            font-family: 'Nunito', sans-serif;
+            padding-top: 35;
+        }
+        .calculator select {
+            display: block;
+            padding: 10px 20px 10px 20px !important; 
+            max-width: 100%; 
+            margin-bottom: 5px;
+            height: auto !important; 
+            border-radius: 5px; 
+            color: #fff; 
+            font-size: 15px; 
+            line-height: 20px !important; 
+            appearance: none; 
+            /* this is must */ -webkit-appearance: none; 
+            -moz-appearance: none; 
+        }
+        .calculator .year1{
+            border: 1px solid #6A41EA; 
+            background-color: #6A41EA; 
+        }
+        
+        .calculator .depart1, .calculator .sem1{
+            border: 1px solid #AA30C9; 
+            background-color: #AA30C9; 
+        }
+        .calculator .subjects1{
+            border: 1px solid #e3e3e3; 
+            background-color: #f6f7f9; 
+            color: #7b8b8e; 
+        } 
+        .calculator input{
+            padding: 10px 2px 10px 2px !important; 
+            max-width: 20%; 
+            height: auto !important; 
+            border: 1px solid #e3e3e3; 
+            border-radius: 3px; 
+            background-color: #fff; 
+            color: #7b8b8e; 
+            font-size: 12pt; 
+            line-height: 20px !important; 
+            appearance: none; 
+            /* this is must */ -webkit-appearance: none; 
+            -moz-appearance: none; 
+        } 
+        .calculator label{
+            padding: 10px 25px 10px 20px !important;
+            margin-right: 20;
+            max-width: 90%; 
+            height: auto !important; 
+            border: 1px solid #e3e3e3; 
+            border-radius: 3px; 
+            background-color: #f6f7f9; 
+            color: #7b8b8e; 
+            font-size: 11pt;
+            font-weight: 500;
+        }
+        .calculator .result1{
+              background: transparent;
+              border: none;
+		      font-size: 70px;
+		      height: 90px;
+              color: #6A41EA;
+              max-width: 40%;
+        }
+        .calculator .top-container{
+            background: #fff;
+            padding: 30;
+            font-size: 17;
+        }
+        .calculator .container2{
+            align-content: center;
+            height: auto;
+            border: solid transparent;
+            border-radius: 25px;
+            background: #f4f7f8;
+            padding: 30;
+            margin-top: 10%;
+        }
+        .calculator button {
+            padding: 13px 30px 13px 30px;
+            color: #fff;
+            font-size: 15px;
+            border-radius: 5px;
+        }
+        .calculator .btn1{
+            background: #6A41EA;
+            border: solid #6A41EA;
+        }
+       .calculator .btn2{
+            background: #AA30C9;
+            border: solid #AA30C9;
+        }
+        @media screen and (max-width:459px)  {
+		.calculator  {
+			width=100%;
+		}
+	    }
+    </style>
+
+</head> 
+<body>
+        <div class="calculator">
+           
+            <form name="calci">
+                <center> 
+                <div class="top-container">
+                <p>Brainheaters Personal Assistant</p>
+                <h3>Attendance Calculator</h3>
+                <select class="year1" id="year" onchange="changeFunc1()">
+                    <option selected disabled>Year of Engineering</option>
+                    <option value="fe">First Year</option>
+                    <option value="se">Second Year</option>
+                    <option value="te">Third Year</option>
+                    <option value="be">Fourth Year</option>
+                </select> <br>
+                <select class="depart1" id="depart" onchange="changeFunc2()">
+                              <option selected disabled>Select Branch</option>
+                              <option value="comps" disabled> Computer </option>
+                              <option value="it" disabled> Information </option>
+                              <option value="extc" disabled> EXTC </option>
+                              <option value="etrx" disabled> Electronics </option>
+                              <option value="mech" disabled> Mechanical </option>
+                              <option value="civil" disabled> Civil </option>
+                              <option value="elect" disabled> Electrical </option>
+                              <option value="chem" disabled> Chemical </option>
+                              <option value="biom" disabled> Biomedical </option>
+                        </select> <br>
+                        <select class="sem1" id="sem" onchange="changeFunc3()">
+                              <option selected disabled>Select Sem</option>
+                              <option value="first" disabled> </option>
+                              <option value="second" disabled> </option>
+                         </select>
+                    </div>
+                </center>
+                
+                    <center>
+                        <div class="container2">
+                           <p class="p2" style = "font-weight: 600">Enter the number of lectures in a week.</p><br>
+                            <table>
+                                <tr>
+                                    <td><select class="subjects1" id="subjects">
+                                            <option selected disabled> Select Subjects </option>
+                                            <option value='sub1' disabled>  </option>
+                                            <option value='sub2' disabled>  </option>
+                                            <option value='sub3' disabled>  </option>
+                                            <option value='sub4' disabled>  </option>
+                                            <option value='sub5' disabled>  </option>
+                                            <option value='sub6' disabled>  </option>
+                                        </select></td>
+                                    <td><input type = text class="lectures1" name="lectures" placeholder="No. of lectures" style="text-align: center;"></td>
+                                </tr>
+                                <tr>
+                                    <td><label>Enter desired %</label></td>
+                                    <td><input type = text class="percent1" name="percent" id="percent" style="text-align: center;"> </td>
+                                </tr>    
+                            </table>
+                            <input type = text class="result1" id="result" name="result" onkeypress="return false" style="text-align: center;">
+                            <p style="font-size: 70%">Lectures you can save every month</p> <br>
+                            <button class="btn1"  onclick="calculate(); return false;"> Calculate </button> 
+                            <button class="btn2" onclick="reset()"> Reset </button>
+                        </div>
+                    </center>
+            </form>
+        </div>
+           
+        
+	<script type="text/javascript">
+        function changeFunc1() {
+            var selectValue3 = document.getElementById("year").options[document.getElementById("year").selectedIndex].value;
+            if(!selectValue3.localeCompare("fe")) {
+                document.getElementById("sem").options[1].text='Sem 1';
+                document.getElementById("sem").options[2].text='Sem 2';
+            }
+            if(!selectValue3.localeCompare("se")) {
+                document.getElementById("sem").options[1].text='Sem 3';
+                document.getElementById("sem").options[2].text='Sem 4';
+            }
+            if(!selectValue3.localeCompare("te")) {
+                document.getElementById("sem").options[1].text='Sem 5';
+                document.getElementById("sem").options[2].text='Sem 6';
+            }
+            if(!selectValue3.localeCompare("be")) {
+                document.getElementById("sem").options[1].text='Sem 7';
+                document.getElementById("sem").options[2].text='Sem 8';
+            }
+            document.getElementById("depart").options[1].disabled = false;
+            document.getElementById("depart").options[2].disabled = false;
+            document.getElementById("depart").options[3].disabled = false;
+            document.getElementById("depart").options[4].disabled = false;
+            document.getElementById("depart").options[5].disabled = false;
+            document.getElementById("depart").options[6].disabled = false;
+            document.getElementById("depart").options[7].disabled = false;
+            document.getElementById("depart").options[8].disabled = false;
+            document.getElementById("depart").options[9].disabled = false;
+        }
+		function changeFunc2() {
+            document.getElementById("sem").options[1].disabled = false;
+            document.getElementById("sem").options[2].disabled = false;
+        }
+        function changeFunc3() {
+            var selectBox1 = document.getElementById("year");
+            var selectedValue1 = selectBox1.options[selectBox1.selectedIndex].value;
+            var selectBox2 = document.getElementById("depart");
+            var selectedValue2 = selectBox2.options[selectBox2.selectedIndex].value;
+            var selectBox3 = document.getElementById("sem");
+            var selectedValue3 = selectBox3.options[selectBox3.selectedIndex].value;
+            var selectBox4 = document.getElementById("subjects");
+            selectBox4.options[1].disabled = false;
+            selectBox4.options[2].disabled = false;	
+            selectBox4.options[3].disabled = false;
+            selectBox4.options[4].disabled = false;
+            selectBox4.options[5].disabled = false;
+            selectBox4.options[6].disabled = false;
+            if((!selectedValue1.localeCompare("fe")) && (!selectedValue3.localeCompare("first"))) {
+                selectBox4.options[1].text = 'AM1';
+				selectBox4.options[2].text = 'Mechanics';	
+				selectBox4.options[3].text = 'BEE';
+				selectBox4.options[4].text = 'AP1';
+				selectBox4.options[5].text = 'AC1';
+				selectBox4.options[6].text = 'EVS';
+            }
+            if((!selectedValue1.localeCompare("fe")) && (!selectedValue3.localeCompare("second"))) {
+                selectBox4.options[1].text = 'AM2';
+				selectBox4.options[2].text = 'ED';	
+				selectBox4.options[3].text = 'SPA';
+				selectBox4.options[4].text = 'AP1';
+				selectBox4.options[5].text = 'AC2';
+				selectBox4.options[6].text = 'CS';
+            }
+			if((!selectedValue1.localeCompare("se")) && (!selectedValue2.localeCompare("comps")) && (!selectedValue3.localeCompare("first"))) {
+				selectBox4.options[1].text = 'AM3';
+				selectBox4.options[2].text = 'DLDA';	
+				selectBox4.options[3].text = 'DS';
+				selectBox4.options[4].text = 'ECCF';
+				selectBox4.options[5].text = 'DIM';
+				selectBox4.options[6].text = 'OOPM';
+			}
+            if((!selectedValue1.localeCompare("se")) && (!selectedValue2.localeCompare("comps")) && (!selectedValue3.localeCompare("second"))) {
+                selectBox4.options[1].text = 'AM4';
+				selectBox4.options[2].text = 'COA';	
+				selectBox4.options[3].text = 'AOA';
+				selectBox4.options[4].text = 'OS';
+				selectBox4.options[5].text = 'CG';
+				selectBox4.options[6].text = 'OSTL';
+            }
+			if((!selectedValue1.localeCompare("se")) && (!selectedValue2.localeCompare("it")) && (!selectedValue3.localeCompare("first"))) {
+				selectBox4.options[1].text = 'AM3';
+				selectBox4.options[2].text = 'LD';	
+				selectBox4.options[3].text = 'DSA';
+				selectBox4.options[4].text = 'DBMS';
+				selectBox4.options[5].text = 'PC';
+				selectBox4.options[6].text = 'OOPM';	
+			}
+            if((!selectedValue1.localeCompare("se")) && (!selectedValue2.localeCompare("it")) && (!selectedValue3.localeCompare("second"))) {
+                selectBox4.options[1].text = 'AM4';
+				selectBox4.options[2].text = 'COA';	
+				selectBox4.options[3].text = 'AT';
+				selectBox4.options[4].text = 'OS';
+				selectBox4.options[5].text = 'CN';
+				selectBox4.options[6].text = 'OSTL';
+            }
+			if((!selectedValue1.localeCompare("se")) && (!selectedValue2.localeCompare("extc")) && (!selectedValue3.localeCompare("first"))) {
+				selectBox4.options[1].text = 'AM3';
+				selectBox4.options[2].text = 'EDC1';	
+				selectBox4.options[3].text = 'DSD';
+				selectBox4.options[4].text = 'CTN';
+				selectBox4.options[5].text = 'EIC';
+                selectBox4.options[6].text = 'OOPM';
+			}
+            if((!selectedValue1.localeCompare("se")) && (!selectedValue2.localeCompare("extc")) && (!selectedValue3.localeCompare("second"))) {
+                selectBox4.options[1].text = 'AM4';
+				selectBox4.options[2].text = 'EDC2';	
+				selectBox4.options[3].text = 'SS';
+				selectBox4.options[4].text = 'PCE';
+				selectBox4.options[5].text = 'LIC';
+                selectBox4.options[6].disabled = true;
+                selectBox4.options[6].text = ' ';
+            }
+            if((!selectedValue1.localeCompare("se")) && (!selectedValue2.localeCompare("etrx")) && (!selectedValue3.localeCompare("first"))) {
+				selectBox4.options[1].text = 'AM3';
+				selectBox4.options[2].text = 'EDC1';	
+				selectBox4.options[3].text = 'DCD';
+				selectBox4.options[4].text = 'ENAS';
+				selectBox4.options[5].text = 'EIM';
+                selectBox4.options[6].disabled = true;
+                selectBox4.options[6].text = ' ';
+			}
+            if((!selectedValue1.localeCompare("se")) && (!selectedValue2.localeCompare("etrx")) && (!selectedValue3.localeCompare("second"))) {
+                selectBox4.options[1].text = 'AM4';
+				selectBox4.options[2].text = 'EDC2';	
+				selectBox4.options[3].text = 'Microprocessor';
+				selectBox4.options[4].text = 'DSD';
+				selectBox4.options[5].text = 'PCE';
+                selectBox4.options[6].text = 'LCS';
+            }
+            if((!selectedValue1.localeCompare("se")) && (!selectedValue2.localeCompare("mech")) && (!selectedValue3.localeCompare("first"))) {
+				selectBox4.options[1].text = 'AM3';
+				selectBox4.options[2].text = 'Thermodynamics';	
+				selectBox4.options[3].text = 'SM';
+				selectBox4.options[4].text = 'PP1';
+				selectBox4.options[5].text = 'MT';
+                selectBox4.options[6].disabled = true;
+                selectBox4.options[6].text = ' ';
+			}
+            if((!selectedValue1.localeCompare("se")) && (!selectedValue2.localeCompare("mech")) && (!selectedValue3.localeCompare("second"))) {
+                selectBox4.options[1].text = 'AM4';
+				selectBox4.options[2].text = 'FM';	
+				selectBox4.options[3].text = 'IE';
+				selectBox4.options[4].text = 'PP2';
+				selectBox4.options[5].text = 'KM';
+                selectBox4.options[6].disabled = true;
+                selectBox4.options[6].text = ' ';
+            }
+            if((!selectedValue1.localeCompare("se")) && (!selectedValue2.localeCompare("civil")) && (!selectedValue3.localeCompare("first"))) {
+				selectBox4.options[1].text = 'AM3';
+				selectBox4.options[2].text = 'S1';	
+				selectBox4.options[3].text = 'SM';
+				selectBox4.options[4].text = 'EG';
+				selectBox4.options[5].text = 'FM1';
+                selectBox4.options[6].disabled = true;
+                selectBox4.options[6].text = ' ';
+			}
+            if((!selectedValue1.localeCompare("se")) && (!selectedValue2.localeCompare("civil")) && (!selectedValue3.localeCompare("second"))) {
+                selectBox4.options[1].text = 'AM4';
+				selectBox4.options[2].text = 'S2';	
+				selectBox4.options[3].text = 'SA1';
+				selectBox4.options[4].text = 'BDD';
+				selectBox4.options[5].text = 'BMCT';
+                selectBox4.options[6].text = 'FM2';
+            }
+            if((!selectedValue1.localeCompare("se")) && (!selectedValue2.localeCompare("elect")) && (!selectedValue3.localeCompare("first"))) {
+				selectBox4.options[1].text = 'AM3';
+				selectBox4.options[2].text = 'EDC';	
+				selectBox4.options[3].text = 'PG';
+				selectBox4.options[4].text = 'EEM';
+				selectBox4.options[5].text = 'EM1';
+                selectBox4.options[6].disabled = true;
+                selectBox4.options[6].text = ' ';
+			}
+            if((!selectedValue1.localeCompare("se")) && (!selectedValue2.localeCompare("elect")) && (!selectedValue3.localeCompare("second"))) {
+                selectBox4.options[1].text = 'AM4';
+				selectBox4.options[2].text = 'PS1';	
+				selectBox4.options[3].text = 'EM2';
+				selectBox4.options[4].text = 'EMFWT';
+				selectBox4.options[5].text = 'ADIC';
+                selectBox4.options[6].text = 'EN';
+            }
+            if((!selectedValue1.localeCompare("se")) && (!selectedValue2.localeCompare("chem")) && (!selectedValue3.localeCompare("first"))) {
+				selectBox4.options[1].text = 'AM3';
+				selectBox4.options[2].text = 'EC1';	
+				selectBox4.options[3].text = 'FFO';
+				selectBox4.options[4].text = 'CT1';
+				selectBox4.options[5].text = 'PC';
+                selectBox4.options[6].text = 'CT';
+			}
+            if((!selectedValue1.localeCompare("se")) && (!selectedValue2.localeCompare("chem")) && (!selectedValue3.localeCompare("second"))) {
+                selectBox4.options[1].text = 'AM4';
+				selectBox4.options[2].text = 'EC2';	
+				selectBox4.options[3].text = 'CT2';
+				selectBox4.options[4].text = 'SFMO';
+				selectBox4.options[5].text = 'MED';
+                selectBox4.options[6].text = 'CEE';
+            }
+            if((!selectedValue1.localeCompare("se")) && (!selectedValue2.localeCompare("bio")) && (!selectedValue3.localeCompare("first"))) {
+				selectBox4.options[1].text = 'AM3';
+				selectBox4.options[2].text = 'BHP';	
+				selectBox4.options[3].text = 'ENAS';
+				selectBox4.options[4].text = 'ECAD';
+				selectBox4.options[5].text = 'BPO';
+                selectBox4.options[6].disabled = true;
+                selectBox4.options[6].text = ' ';
+			}
+            if((!selectedValue1.localeCompare("se")) && (!selectedValue2.localeCompare("bio")) && (!selectedValue3.localeCompare("second"))) {
+                selectBox4.options[1].text = 'AM4';
+				selectBox4.options[2].text = 'BTMI';	
+				selectBox4.options[3].text = 'LIC';
+				selectBox4.options[4].text = 'DE';
+				selectBox4.options[5].text = 'SCS';
+                selectBox4.options[6].disabled = true;
+                selectBox4.options[6].text = ' ';
+            }
+            if((!selectedValue1.localeCompare("te")) && (!selectedValue2.localeCompare("comps")) && (!selectedValue3.localeCompare("first"))) {
+				selectBox4.options[1].text = 'Microprocessor';
+				selectBox4.options[2].text = 'DBMS';	
+				selectBox4.options[3].text = 'CN';
+				selectBox4.options[4].text = 'TCS';
+				selectBox4.options[5].text = 'Optional';
+				selectBox4.options[6].text = 'BCE';
+			}
+            if((!selectedValue1.localeCompare("te")) && (!selectedValue2.localeCompare("comps")) && (!selectedValue3.localeCompare("second"))) {
+                selectBox4.options[1].text = 'SE';
+				selectBox4.options[2].text = 'SPCC';	
+				selectBox4.options[3].text = 'DWM';
+				selectBox4.options[4].text = 'CSS';
+				selectBox4.options[5].text = 'Optional';
+                selectBox4.options[6].disabled = true;
+				selectBox4.options[6].text = ' ';
+            }
+			if((!selectedValue1.localeCompare("te")) && (!selectedValue2.localeCompare("it")) && (!selectedValue3.localeCompare("first"))) {
+				selectBox4.options[1].text = 'MES';
+				selectBox4.options[2].text = 'IP';	
+				selectBox4.options[3].text = 'ADMT';
+				selectBox4.options[4].text = 'CNS';
+				selectBox4.options[5].text = 'Optional';
+                selectBox4.options[6].disabled = true;
+				selectBox4.options[6].text = ' ';	
+			}
+            if((!selectedValue1.localeCompare("te")) && (!selectedValue2.localeCompare("it")) && (!selectedValue3.localeCompare("second"))) {
+                selectBox4.options[1].text = 'SEPM';
+				selectBox4.options[2].text = 'DMBI';	
+				selectBox4.options[3].text = 'CCS';
+				selectBox4.options[4].text = 'WN';
+				selectBox4.options[5].text = 'Optional';
+                selectBox4.options[6].disabled = true;
+				selectBox4.options[6].text = ' ';
+            }
+			if((!selectedValue1.localeCompare("te")) && (!selectedValue2.localeCompare("extc")) && (!selectedValue3.localeCompare("first"))) {
+				selectBox4.options[1].text = 'MPI';
+				selectBox4.options[2].text = 'DC';	
+				selectBox4.options[3].text = 'EE';
+				selectBox4.options[4].text = 'DTSP';
+				selectBox4.options[5].text = 'Optional';
+                selectBox4.options[6].disabled = true;
+                selectBox4.options[6].text = '';
+			}
+            if((!selectedValue1.localeCompare("te")) && (!selectedValue2.localeCompare("extc")) && (!selectedValue3.localeCompare("second"))) {
+                selectBox4.options[1].text = 'Microcontroller';
+				selectBox4.options[2].text = 'CCN';	
+				selectBox4.options[3].text = 'ARWP';
+				selectBox4.options[4].text = 'IPMV';
+				selectBox4.options[5].text = 'Optional';
+                selectBox4.options[6].disabled = true;
+                selectBox4.options[6].text = ' ';
+            }
+            if((!selectedValue1.localeCompare("te")) && (!selectedValue2.localeCompare("etrx")) && (!selectedValue3.localeCompare("first"))) {
+				selectBox4.options[1].text = 'Microcontroller';
+				selectBox4.options[2].text = 'DC';	
+				selectBox4.options[3].text = 'EE';
+				selectBox4.options[4].text = 'DLIC';
+				selectBox4.options[5].text = 'Optional';
+                selectBox4.options[6].disabled = true;
+                selectBox4.options[6].text = ' ';
+			}
+            if((!selectedValue1.localeCompare("te")) && (!selectedValue2.localeCompare("etrx")) && (!selectedValue3.localeCompare("second"))) {
+                selectBox4.options[1].text = 'ES';
+				selectBox4.options[2].text = 'CCN';	
+				selectBox4.options[3].text = 'VLSID';
+				selectBox4.options[4].text = 'SS';
+				selectBox4.options[5].text = 'Optional';
+                selectBox4.options[6].disabled = true;
+                selectBox4.options[6].text = ' ';
+            }
+            if((!selectedValue1.localeCompare("te")) && (!selectedValue2.localeCompare("mech")) && (!selectedValue3.localeCompare("first"))) {
+				selectBox4.options[1].text = 'ICE';
+				selectBox4.options[2].text = 'MMC';	
+				selectBox4.options[3].text = 'HT';
+				selectBox4.options[4].text = 'DM';
+				selectBox4.options[5].text = 'Optional';
+                selectBox4.options[6].disabled = true;
+                selectBox4.options[6].text = ' ';
+			}
+            if((!selectedValue1.localeCompare("te")) && (!selectedValue2.localeCompare("mech")) && (!selectedValue3.localeCompare("second"))) {
+                selectBox4.options[1].text = 'MQE';
+				selectBox4.options[2].text = 'MD1';	
+				selectBox4.options[3].text = 'FEA';
+				selectBox4.options[4].text = 'RAC';
+				selectBox4.options[5].text = 'Optional';
+                selectBox4.options[6].disabled = true;
+                selectBox4.options[6].text = ' ';
+            }
+            if((!selectedValue1.localeCompare("te")) && (!selectedValue2.localeCompare("civil")) && (!selectedValue3.localeCompare("first"))) {
+				selectBox4.options[1].text = 'SA2';
+				selectBox4.options[2].text = 'GE1';	
+				selectBox4.options[3].text = 'AH';
+				selectBox4.options[4].text = 'EE1';
+				selectBox4.options[5].text = 'TE1';
+                selectBox4.options[6].text = 'Optional';
+			}
+            if((!selectedValue1.localeCompare("te")) && (!selectedValue2.localeCompare("civil")) && (!selectedValue3.localeCompare("second"))) {
+                selectBox4.options[1].text = 'GE2';
+				selectBox4.options[2].text = 'DDSS';	
+				selectBox4.options[3].text = 'TE2';
+				selectBox4.options[4].text = 'EE2';
+				selectBox4.options[5].text = 'WRE1';
+                selectBox4.options[6].text = 'Optional';
+            }
+            if((!selectedValue1.localeCompare("te")) && (!selectedValue2.localeCompare("elect")) && (!selectedValue3.localeCompare("first"))) {
+				selectBox4.options[1].text = 'PS2';
+				selectBox4.options[2].text = 'EM3';	
+				selectBox4.options[3].text = 'CS1';
+				selectBox4.options[4].text = 'PE';
+				selectBox4.options[5].text = 'Optional1';
+                selectBox4.options[6].disabled = true;
+                selectBox4.options[6].text = ' ';
+			}
+            if((!selectedValue1.localeCompare("te")) && (!selectedValue2.localeCompare("elect")) && (!selectedValue3.localeCompare("second"))) {
+                selectBox4.options[1].text = 'PSE';
+				selectBox4.options[2].text = 'EM4';	
+				selectBox4.options[3].text = 'SP';
+				selectBox4.options[4].text = 'Microcontroller';
+				selectBox4.options[5].text = 'CS2';
+                selectBox4.options[6].text = 'Optional';
+            }
+            if((!selectedValue1.localeCompare("te")) && (!selectedValue2.localeCompare("chem")) && (!selectedValue3.localeCompare("first"))) {
+				selectBox4.options[1].text = 'CPNM';
+				selectBox4.options[2].text = 'MTO1';	
+				selectBox4.options[3].text = 'HTO';
+				selectBox4.options[4].text = 'CRE1';
+				selectBox4.options[5].text = 'BCE';
+                selectBox4.options[6].text = 'Optional';
+			}
+            if((!selectedValue1.localeCompare("te")) && (!selectedValue2.localeCompare("chem")) && (!selectedValue3.localeCompare("second"))) {
+                selectBox4.options[1].text = 'EE';
+				selectBox4.options[2].text = 'MTO2';	
+				selectBox4.options[3].text = 'TP';
+				selectBox4.options[4].text = 'CRE2';
+				selectBox4.options[5].text = 'PEIS';
+                selectBox4.options[6].text = 'Optional';
+            }
+            if((!selectedValue1.localeCompare("te")) && (!selectedValue2.localeCompare("bio")) && (!selectedValue3.localeCompare("first"))) {
+				selectBox4.options[1].text = 'DTI';
+				selectBox4.options[2].text = 'ADCD';	
+				selectBox4.options[3].text = 'PCE';
+				selectBox4.options[4].text = 'BDIP';
+				selectBox4.options[5].text = 'Optional';
+                selectBox4.options[6].disabled = true;
+                selectBox4.options[6].text = ' ';
+			}
+            if((!selectedValue1.localeCompare("te")) && (!selectedValue2.localeCompare("bio")) && (!selectedValue3.localeCompare("second"))) {
+                selectBox4.options[1].text = 'BME';
+				selectBox4.options[2].text = 'Microprocessor & Microcontroller';	
+				selectBox4.options[3].text = 'DIP';
+				selectBox4.options[4].text = 'MI1';
+				selectBox4.options[5].text = 'Optional';
+                selectBox4.options[6].disabled = true;
+                selectBox4.options[6].text = ' ';
+            }
+            if((!selectedValue1.localeCompare("be")) && (!selectedValue2.localeCompare("comps")) && (!selectedValue3.localeCompare("first"))) {
+				selectBox4.options[1].text = 'DSIP';
+				selectBox4.options[2].text = 'MCC';	
+				selectBox4.options[3].text = 'AISC';
+				selectBox4.options[4].text = 'Optional1';
+				selectBox4.options[5].text = 'Optional2';
+                selectBox4.options[6].disabled = true;
+				selectBox4.options[6].text = '';
+			}
+            if((!selectedValue1.localeCompare("be")) && (!selectedValue2.localeCompare("comps")) && (!selectedValue3.localeCompare("second"))) {
+                selectBox4.options[1].text = 'HMI';
+				selectBox4.options[2].text = 'DC';	
+				selectBox4.options[3].text = 'Optional1';
+				selectBox4.options[4].text = 'Optional2';
+                selectBox4.options[5].disabled = true;
+				selectBox4.options[5].text = '';
+                selectBox4.options[6].disabled = true;
+				selectBox4.options[6].text = '';
+            }
+			if((!selectedValue1.localeCompare("be")) && (!selectedValue2.localeCompare("it")) && (!selectedValue3.localeCompare("first"))) {
+				selectBox4.options[1].text = 'END';
+				selectBox4.options[2].text = 'IS';	
+				selectBox4.options[3].text = 'AI';
+				selectBox4.options[4].text = 'Optional1';
+				selectBox4.options[5].text = 'Optional2';
+                selectBox4.options[6].disabled = true;
+				selectBox4.options[6].text = ' ';	
+			}
+            if((!selectedValue1.localeCompare("be")) && (!selectedValue2.localeCompare("it")) && (!selectedValue3.localeCompare("second"))) {
+                selectBox4.options[1].text = 'BDA';
+				selectBox4.options[2].text = 'IoE';	
+				selectBox4.options[3].text = 'Optional1';
+				selectBox4.options[4].text = 'Optional2';
+                selectBox4.options[5].disabled = true;
+				selectBox4.options[5].text = ' ';
+                selectBox4.options[6].disabled = true;
+				selectBox4.options[6].text = ' ';
+            }
+			if((!selectedValue1.localeCompare("be")) && (!selectedValue2.localeCompare("extc")) && (!selectedValue3.localeCompare("first"))) {
+				selectBox4.options[1].text = 'ME';
+				selectBox4.options[2].text = 'MCS';	
+				selectBox4.options[3].text = 'OC';
+				selectBox4.options[4].text = 'Optional1';
+				selectBox4.options[5].text = 'Optional2';
+                selectBox4.options[6].disabled = true;
+                selectBox4.options[6].text = '';
+			}
+            if((!selectedValue1.localeCompare("be")) && (!selectedValue2.localeCompare("extc")) && (!selectedValue3.localeCompare("second"))) {
+                selectBox4.options[1].text = 'RFD';
+				selectBox4.options[2].text = 'WN';	
+				selectBox4.options[3].text = 'Optional1';
+				selectBox4.options[4].text = 'Optional2';
+                selectBox4.options[5].disabled = true;
+				selectBox4.options[5].text = '';
+                selectBox4.options[6].disabled = true;
+                selectBox4.options[6].text = '';
+            }
+            if((!selectedValue1.localeCompare("be")) && (!selectedValue2.localeCompare("etrx")) && (!selectedValue3.localeCompare("first"))) {
+				selectBox4.options[1].text = 'ISD';
+				selectBox4.options[2].text = 'PE';	
+				selectBox4.options[3].text = 'DSP';
+				selectBox4.options[4].text = 'Optional1';
+				selectBox4.options[5].text = 'Optional2';
+                selectBox4.options[6].disabled = true;
+                selectBox4.options[6].text = ' ';
+			}
+            if((!selectedValue1.localeCompare("be")) && (!selectedValue2.localeCompare("etrx")) && (!selectedValue3.localeCompare("second"))) {
+                selectBox4.options[1].text = 'IoT';
+				selectBox4.options[2].text = 'AMVD';	
+				selectBox4.options[3].text = 'Optional1';
+				selectBox4.options[4].text = 'Optional2';
+                selectBox4.options[5].disabled = true;
+				selectBox4.options[5].text = ' ';
+                selectBox4.options[6].disabled = true;
+                selectBox4.options[6].text = ' ';
+            }
+            if((!selectedValue1.localeCompare("be")) && (!selectedValue2.localeCompare("mech")) && (!selectedValue3.localeCompare("first"))) {
+				selectBox4.options[1].text = 'MD2';
+				selectBox4.options[2].text = 'CAD/CAM/CAE';	
+				selectBox4.options[3].text = 'PPC';
+				selectBox4.options[4].text = 'Optional1';
+				selectBox4.options[5].text = 'Optional2';
+                selectBox4.options[6].disabled = true;
+                selectBox4.options[6].text = ' ';
+			}
+            if((!selectedValue1.localeCompare("be")) && (!selectedValue2.localeCompare("mech")) && (!selectedValue3.localeCompare("second"))) {
+                selectBox4.options[1].text = 'DMS';
+				selectBox4.options[2].text = 'IEM';	
+				selectBox4.options[3].text = 'PE';
+				selectBox4.options[4].text = 'Optional1';
+				selectBox4.options[5].text = 'Optional2';
+                selectBox4.options[6].disabled = true;
+                selectBox4.options[6].text = ' ';
+            }
+            if((!selectedValue1.localeCompare("be")) && (!selectedValue2.localeCompare("civil")) && (!selectedValue3.localeCompare("first"))) {
+				selectBox4.options[1].text = 'QSEV';
+				selectBox4.options[2].text = 'TRCS';	
+				selectBox4.options[3].text = 'WRE2';
+				selectBox4.options[4].text = 'Optional1';
+				selectBox4.options[5].text = 'Optional2';
+                selectBox4.options[6].disabled = true;
+                selectBox4.options[6].text = ' ';
+			}
+            if((!selectedValue1.localeCompare("be")) && (!selectedValue2.localeCompare("civil")) && (!selectedValue3.localeCompare("second"))) {
+                selectBox4.options[1].text = 'DDRCS';
+				selectBox4.options[2].text = 'CM';	
+				selectBox4.options[3].text = 'Optional1';
+				selectBox4.options[4].text = 'Optional2';
+                selectBox4.options[5].disabled = true;
+				selectBox4.options[5].text = ' ';
+                selectBox4.options[6].disabled = true;
+                selectBox4.options[6].text = ' ';
+            }
+            if((!selectedValue1.localeCompare("be")) && (!selectedValue2.localeCompare("elect")) && (!selectedValue3.localeCompare("first"))) {
+				selectBox4.options[1].text = 'PS3';
+				selectBox4.options[2].text = 'DC';	
+				selectBox4.options[3].text = 'HVDCT';
+				selectBox4.options[4].text = 'Optional1';
+				selectBox4.options[5].text = 'Optional2';
+                selectBox4.options[6].disabled = true;
+                selectBox4.options[6].text = ' ';
+			}
+            if((!selectedValue1.localeCompare("be")) && (!selectedValue2.localeCompare("elect")) && (!selectedValue3.localeCompare("second"))) {
+                selectBox4.options[1].text = 'DMAES';
+				selectBox4.options[2].text = 'FACTS';	
+				selectBox4.options[3].text = 'Optional1';
+				selectBox4.options[4].text = 'Optional2';
+                selectBox4.options[5].disabled = true;
+				selectBox4.options[5].text = ' ';
+                selectBox4.options[6].disabled = true;
+                selectBox4.options[6].text = ' ';
+            }
+            if((!selectedValue1.localeCompare("be")) && (!selectedValue2.localeCompare("chem")) && (!selectedValue3.localeCompare("first"))) {
+				selectBox4.options[1].text = 'PED';
+				selectBox4.options[2].text = 'PE';	
+				selectBox4.options[3].text = 'PDC';
+				selectBox4.options[4].text = 'Optiona1';
+				selectBox4.options[5].text = 'Optional2';
+                selectBox4.options[6].disabled = true;
+                selectBox4.options[6].text = ' ';
+			}
+            if((!selectedValue1.localeCompare("be")) && (!selectedValue2.localeCompare("chem")) && (!selectedValue3.localeCompare("second"))) {
+                selectBox4.options[1].text = 'MSO';
+				selectBox4.options[2].text = 'PEEM';	
+				selectBox4.options[3].text = 'ESD';
+				selectBox4.options[4].text = 'Optional1';
+				selectBox4.options[5].text = 'Optional2';
+                selectBox4.options[6].disabled = true;
+                selectBox4.options[6].text = ' ';
+            }
+            if((!selectedValue1.localeCompare("be")) && (!selectedValue2.localeCompare("bio")) && (!selectedValue3.localeCompare("first"))) {
+				selectBox4.options[1].text = 'LSSE';
+				selectBox4.options[2].text = 'IS';	
+				selectBox4.options[3].text = 'MI2';
+				selectBox4.options[4].text = 'Optional1';
+				selectBox4.options[5].text = 'Optional2';
+                selectBox4.options[6].disabled = true;
+                selectBox4.options[6].text = ' ';
+			}
+            if((!selectedValue1.localeCompare("be")) && (!selectedValue2.localeCompare("bio")) && (!selectedValue3.localeCompare("second"))) {
+                selectBox4.options[1].text = 'BM';
+				selectBox4.options[2].text = 'HM';	
+				selectBox4.options[3].text = 'Optional1';
+				selectBox4.options[4].text = 'Optional2';
+                selectBox4.options[5].disabled = true;
+				selectBox4.options[5].text = ' ';
+                selectBox4.options[6].disabled = true;
+                selectBox4.options[6].text = ' ';
+            }
+        }
+        function reset()  {
+            document.getElementByName("calci").reset();
+        }
+		function calculate() {
+			var nol = Number(document.calci.lectures.value);
+            var per = Number(document.calci.percent.value);
+			var res;
+			res=(4*(100-per)*nol)/100;
+            res=Math.floor(res);
+			document.calci.result.value = res;
+		}
+	</script>
+</body>
+</html>
