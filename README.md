@@ -18,5 +18,5 @@ To use the Attendance Planner web application, visit the website brainheaters.in
 Please refer to the code provided in this repository for further information on how to use and implement the Attendance Planner web application.
 
 ## User-interface
-<img src="Screenshot1.png" alt="Screen 1" title="Screen 1" width="600" height="600">
-<img src="Screenshot2.png" alt="Screen 2" title="Screen 2" width="600" height="600">
+<img src="Screenshot1.png" alt="Screen 1" title="Screen 1" width="450" height="600">
+<img src="Screenshot2.png" alt="Screen 2" title="Screen 2" width="450" height="600">
