@@ -5,11 +5,8 @@ This repository contains a web application built using HTML, CSS, and JavaScript
 The Attendance Planner provides the following functionality:
 
 - Selection of Year and Subject: Users can choose the specific year and subject for which they want to calculate the required number of lectures.
-
 - Number of Lectures per Week: Users can input the number of lectures scheduled per week for the selected year and subject.
-
 - Desired Attendance Percentage: Users can specify the desired attendance percentage they aim to achieve for the given month.
-
 - Calculation of Required Lectures: Based on the provided inputs, the application calculates the number of lectures the user cannot attend in order to achieve the desired attendance percentage.
 
 ## Usage
@@ -19,4 +16,4 @@ Please refer to the code provided in this repository for further information on 
 
 ## User-interface
 <img src="Screenshot1.png" alt="Screen 1" title="Screen 1" width="450" height="600">
-<img src="Screenshot2.png" alt="Screen 2" title="Screen 2" width="450" height="600">
+<img src="Screenshot2.png" alt="Screen 2" title="Screen 2" width="400" height="600">
