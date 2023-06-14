@@ -10,7 +10,7 @@ The Attendance Planner provides the following functionality:
 - Calculation of Required Lectures: Based on the provided inputs, the application calculates the number of lectures the user cannot attend in order to achieve the desired attendance percentage.
 
 ## Usage
-To use the Attendance Planner web application, visit the website brainheaters.in. Once on the website, navigate to the Attendance Planner section. You will be presented with an interface where you can select the year, subject, number of lectures per week, and desired attendance percentage. After providing the necessary inputs, the application will calculate the required number of lectures for you.
+To use the Attendance Planner web application. Once on this page, navigate to the Attendance Planner section. You will be presented with an interface where you can select the year, subject, number of lectures per week, and desired attendance percentage. After providing the necessary inputs, the application will calculate the required number of lectures for you.
 
 Please refer to the code provided in this repository for further information on how to use and implement the Attendance Planner web application.
 
